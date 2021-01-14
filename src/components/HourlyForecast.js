@@ -59,11 +59,28 @@ export default function HourlyForecast({hourlyForecast, sunset, sunrise}) {
         let weatherDescription = oneHour?.weather?.[0]?.description;
         let feels_like = oneHour?.feels_like
         let dayAndHour = allHoursArray[i];
-        let precipitationSnow = oneHour?.snow;
-        let precipitationRain = oneHour?.rain;
-        console.log(oneHour?.snow)
-        console.log(precipitationSnow)
-        let hourly_weather_details = {temp: upcomingTemperature, description: weatherDescription, dayAndHour: dayAndHour, feels_like: feels_like, };
+        let precipitation;
+        if(oneHour.snow !== undefined){
+            precipitation = oneHour.snow;
+            console.log("Snö")
+            console.log(oneHour.snow)
+            console.log("Här")
+            // console.log(Object.entries(oneHour.snow))
+            // console.log(Object.values(oneHour.snow))
+        }else{
+            precipitation = 0;
+        }
+
+        if(oneHour.rain !== undefined){
+            precipitation = oneHour.rain;
+            console.log("Regn")
+        }else{
+            precipitation = 0;
+        }
+        // console.log("Regn")
+        // console.log(oneHour?.rain)
+        console.log(precipitation)
+        let hourly_weather_details = {temp: upcomingTemperature, description: weatherDescription, dayAndHour: dayAndHour, feels_like: feels_like, precipitation: precipitation};
 
         return hourly_weather_details;
     })
@@ -145,6 +162,7 @@ export default function HourlyForecast({hourlyForecast, sunset, sunrise}) {
                 <td title={hours.description}> {icon} </td>
                 <td> {Math.round(hours.temp)} °C</td>
                 <td> {Math.round(hours.feels_like)} °C</td>
+                <td> {hours.precipitation} mm</td>
             </tr>
         </>
     })
@@ -159,6 +177,7 @@ export default function HourlyForecast({hourlyForecast, sunset, sunrise}) {
                         <th>Väder</th>
                         <th>Tempertur</th>
                         <th>Känns som</th>
+                        <th>Nederbörd</th>
                     </tr>
                 </thead>
                 <tbody>
