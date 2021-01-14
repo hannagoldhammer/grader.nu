@@ -1,0 +1,88 @@
+.clouds{
+    overflow: hidden;
+    background: -webkit-linear-gradient(top, #c9dbe9 0%, #fff 100%);
+	background: -linear-gradient(top, #c9dbe9 0%, #fff 100%);
+    background: -moz-linear-gradient(top, #c9dbe9 0%, #fff 100%);
+    padding: 100px 0;
+
+    .cloud1{
+        background-image: url(../assets/cloud1.png);
+        position: absolute;
+        min-width: 250px;
+        min-height: 250px;
+        bottom: 250px;
+        background-size: cover;
+    }
+    .x1 {
+        -webkit-animation: moveclouds 10s linear infinite;
+        -moz-animation: moveclouds 10s linear infinite;
+        -o-animation: moveclouds 10s linear infinite;
+    }
+    .cloud2{
+        background-image: url(../assets/cloud2.png);
+        position: absolute;
+        min-width: 250px;
+        min-height: 250px;
+        bottom: 0;
+        background-size: cover;
+    }
+    .x2 {
+        left: 200px;
+        -webkit-animation: moveclouds 20s linear infinite;
+        -moz-animation: moveclouds 20s linear infinite;
+        -o-animation: moveclouds 20s linear infinite;
+
+        -webkit-transform: scale(0.6);
+        -moz-transform: scale(0.6);
+        transform: scale(0.6);
+        opacity: 0.6;
+    
+    }
+    .cloud3{
+        width: 200px; height: 60px;
+        background: #fff;
+        bottom: 30px;
+        border-radius: 200px;
+        -moz-border-radius: 200px;
+        -webkit-border-radius: 200px;
+        
+        position: absolute; 
+    }
+    .x3{
+        left: -250px; 
+        -webkit-animation: moveclouds 30s linear infinite;
+        -moz-animation: moveclouds 30s linear infinite;
+        -o-animation: moveclouds 30s linear infinite;
+    }
+    .cloud3:before, .cloud3:after {
+        content: '';
+        position: absolute; 
+        background: #fff;
+        width: 100px; height: 80px;
+        position: absolute; top: -15px; left: 10px;
+        
+        border-radius: 100px;
+        -moz-border-radius: 100px;
+        -webkit-border-radius: 100px;
+        
+        -webkit-transform: rotate(30deg);
+        transform: rotate(30deg);
+        -moz-transform: rotate(30deg);
+    }
+    
+    .cloud3:after {
+        width: 120px; height: 120px;
+        top: -55px; left: auto; right: 15px;
+    }
+    
+
+    // @keyframes moveclouds {
+    //     0% {left: 800px;}
+    //     100% {left: -270px;}
+    // }
+    
+    
+}
+.clouds::before{
+    content: "\200B";
+}
