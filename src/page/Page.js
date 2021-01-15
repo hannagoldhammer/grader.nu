@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import Geocode from "react-geocode";
 import HourlyForecast from "../components/HourlyForecast";
 import DailyForecast from "../components/DailyForecast";
+import Loading from "../components/Loading";
 
 export default function Page() {
     const [currentWeather, setCurrentWeather] = useState({});
@@ -14,7 +15,7 @@ export default function Page() {
     const [reversedGeolocation, setReversedGeolocation] = useState("")
     const [searchedCity, setSearchedCity] = useState("")
     const [error, setError] = useState("")
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const [error404, setError404] = useState(false)
     const [error503, setError503] = useState(false)
     const [hourlyForecast, setHourlyForecast] = useState({})
@@ -214,29 +215,36 @@ export default function Page() {
 
     return (
       <div className="main-div">
-        <div className="weatherpage-div">
-            <Header/>
-            <SearchCity getSearchedWeather={getSearchedWeather} getSearchedWeatherResult={search => {setSearchedCity(search)}} />
-            <WeatherPage loading={loading} data={currentWeather} reversedGeolocation={reversedGeolocation} error404={error404} error503={error503} sunrise={sunrise} sunset={sunset}/>
-        </div>
-
-        {/* <div className="dailyForecast-div">
-          {leftButton ? 
-            <div onClick={left} className="arrow-div left">
-              <i class="fas fa-chevron-left fa-lg"></i>
+        {loading ? 
+          <Loading />
+        :
+        <>
+          <div className="weatherpage-div">
+              <Header/>
+              <SearchCity getSearchedWeather={getSearchedWeather} getSearchedWeatherResult={search => {setSearchedCity(search)}} />
+              <WeatherPage loading={loading} data={currentWeather} reversedGeolocation={reversedGeolocation} error404={error404} error503={error503} sunrise={sunrise} sunset={sunset}/>
+          </div>
+          <div className="dailyForecast-div">
+            {leftButton ? 
+              <div onClick={left} className="arrow-div left">
+                <i class="fas fa-chevron-left fa-lg"></i>
+              </div>
+            : null}
+            <div id="scroll-div" className="dailyForecast-wrapping-div">
+              <DailyForecast dailyForecast={dailyForecast}/>
             </div>
-          : null}
-          <div id="scroll-div" className="dailyForecast-wrapping-div">
-            <DailyForecast dailyForecast={dailyForecast}/>
+            <div onClick={right} className="arrow-div right">
+              <i class="fas fa-chevron-right fa-lg"></i>
+            </div>
           </div>
-          <div onClick={right} className="arrow-div right">
-            <i class="fas fa-chevron-right fa-lg"></i>
-          </div>
-        </div> */}
 
-        <div className="hourlyForecast-wrapping-div">
-            <HourlyForecast hourlyForecast={hourlyForecast} sunrise={sunrise} sunset={sunset}/>
-        </div>
+          <div className="hourlyForecast-wrapping-div">
+              <HourlyForecast hourlyForecast={hourlyForecast} sunrise={sunrise} sunset={sunset}/>
+          </div>
+        </>
+      }
+        
+
       </div>
     )
 }

@@ -59,11 +59,20 @@ export default function HourlyForecast({hourlyForecast, sunset, sunrise}) {
         let weatherDescription = oneHour?.weather?.[0]?.description;
         let feels_like = oneHour?.feels_like
         let dayAndHour = allHoursArray[i];
-        let precipitationSnow = oneHour?.snow;
-        let precipitationRain = oneHour?.rain;
-        console.log(oneHour?.snow)
-        console.log(precipitationSnow)
-        let hourly_weather_details = {temp: upcomingTemperature, description: weatherDescription, dayAndHour: dayAndHour, feels_like: feels_like, };
+        let precipitation;
+        if(oneHour.snow?.["1h"] !== undefined){
+            precipitation = oneHour.snow?.["1h"];
+        }else{
+            precipitation = 0;
+        }
+
+        if(oneHour?.rain?.["1h"] !== undefined){
+            precipitation = oneHour?.rain?.["1h"];
+        }else{
+            precipitation = 0;
+        }
+        // console.log(oneHour?.snow?.["1h"])
+        let hourly_weather_details = {temp: upcomingTemperature, description: weatherDescription, dayAndHour: dayAndHour, feels_like: feels_like, precipitation: precipitation};
 
         return hourly_weather_details;
     })
@@ -145,6 +154,7 @@ export default function HourlyForecast({hourlyForecast, sunset, sunrise}) {
                 <td title={hours.description}> {icon} </td>
                 <td> {Math.round(hours.temp)} °C</td>
                 <td> {Math.round(hours.feels_like)} °C</td>
+                <td> {hours.precipitation} mm</td>
             </tr>
         </>
     })
@@ -153,22 +163,26 @@ export default function HourlyForecast({hourlyForecast, sunset, sunrise}) {
         <>
             <div className="hourlyForecast-div"> 
             <table>
-                <thead>
+                <thead key={"Head"}>
                     <tr className="table-Head">
                         <th>Timme</th>
                         <th>Väder</th>
                         <th>Tempertur</th>
                         <th>Känns som</th>
+                        <th>Nederbörd</th>
                     </tr>
                 </thead>
                 <tbody>
                     {details}
                 </tbody>
-                {visible < 49 ? 
-                <button onClick={showMore}>Visa mer</button>
-                : false}
             </table>
             </div>
+            {visible < 49 ?
+                <div className="show-more-btn-div">
+                    <button className="show-more-btn" onClick={showMore}><i className="fas fa-chevron-down fa-lg"></i></button>
+                    
+                </div> 
+            : false}
         </>
     )
 }

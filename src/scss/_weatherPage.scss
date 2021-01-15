@@ -38,6 +38,17 @@
     }
 }
 
+.grey-loading{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .dailyForecast-div{
     position: relative;
 
@@ -59,13 +70,34 @@
 }
 
 .current-place-weather-info{
-    padding-bottom: 20px;
-
     .icon-img{
         width: 100px;
     }
 
     .city{
         font-weight: 600;
+    }
+    .precipitation-div{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        background-color: aliceblue;
+        border-radius: 0 0 5px 5px;
+
+        // border-top: solid lightgray 1px;
+
+        .more-info-div{
+            display: flex;
+            margin: auto 0;
+            padding: 20px;
+
+            .precipitation-img{
+                width: 42px;
+            }
+
+            p{
+                padding: 0 0 0 10px;
+            }
+        }
     }
 }

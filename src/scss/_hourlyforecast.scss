@@ -28,8 +28,23 @@
             .icon-img{
                 width: 42px;
             }
+        }    
+    }
+    .show-more-btn-div{
+        overflow-y: hidden;
+        .fas{
+            color: lightslategray;
         }
-
-
+        .show-more-btn{
+            background-color: transparent;
+            font-size: medium;
+            color: lightslategray;
+            border: none;
+            padding: 9px 0;
+        }
+        .show-more-btn:hover{
+            cursor: pointer;
+            
+        }
     }
 }
