@@ -60,18 +60,40 @@ export default function HourlyForecast({hourlyForecast, sunset, sunrise}) {
         let feels_like = oneHour?.feels_like
         let dayAndHour = allHoursArray[i];
         let precipitation;
+<<<<<<< HEAD
         if(oneHour.snow?.["1h"] !== undefined){
             precipitation = oneHour.snow?.["1h"];
+=======
+        if(oneHour.snow !== undefined){
+            precipitation = oneHour.snow;
+            console.log("Snö")
+            console.log(oneHour.snow)
+            console.log("Här")
+            // console.log(Object.entries(oneHour.snow))
+            // console.log(Object.values(oneHour.snow))
+>>>>>>> 60659f73960443c0d63ea894f83dcebb13dda635
         }else{
             precipitation = 0;
         }
 
+<<<<<<< HEAD
         if(oneHour?.rain?.["1h"] !== undefined){
             precipitation = oneHour?.rain?.["1h"];
         }else{
             precipitation = 0;
         }
         // console.log(oneHour?.snow?.["1h"])
+=======
+        if(oneHour.rain !== undefined){
+            precipitation = oneHour.rain;
+            console.log("Regn")
+        }else{
+            precipitation = 0;
+        }
+        // console.log("Regn")
+        // console.log(oneHour?.rain)
+        console.log(precipitation)
+>>>>>>> 60659f73960443c0d63ea894f83dcebb13dda635
         let hourly_weather_details = {temp: upcomingTemperature, description: weatherDescription, dayAndHour: dayAndHour, feels_like: feels_like, precipitation: precipitation};
 
         return hourly_weather_details;
