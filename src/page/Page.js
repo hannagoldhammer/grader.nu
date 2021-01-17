@@ -204,19 +204,26 @@ export default function Page() {
 
     function right() {
       console.log("Vänster")
-      console.log(document.getElementById('scroll-div').scrollLeft)
-      document.getElementById('scroll-div').scrollLeft += 250;
+      document.getElementById('scroll-div').scroll({
+        left: document.getElementById('scroll-div').scrollLeft +250,
+        behavior: 'smooth'
+    })
       setLeftButton(true)
     };
     function left() {
       console.log("Höger")
-        document.getElementById('scroll-div').scrollLeft -= 250;
+        document.getElementById('scroll-div').scroll({
+        left: document.getElementById('scroll-div').scrollLeft -250,
+        behavior: 'smooth'
+    })
     };
 
     return (
       <div className="main-div">
         {loading ? 
-          <Loading />
+          <div id="initial-loading">
+            <Loading />
+          </div>
         :
         <>
           <div className="weatherpage-div">
@@ -224,6 +231,7 @@ export default function Page() {
               <SearchCity getSearchedWeather={getSearchedWeather} getSearchedWeatherResult={search => {setSearchedCity(search)}} />
               <WeatherPage loading={loading} data={currentWeather} reversedGeolocation={reversedGeolocation} error404={error404} error503={error503} sunrise={sunrise} sunset={sunset}/>
           </div>
+          
           <div className="dailyForecast-div">
             {leftButton ? 
               <div onClick={left} className="arrow-div left">
@@ -238,6 +246,7 @@ export default function Page() {
             </div>
           </div>
 
+          
           <div className="hourlyForecast-wrapping-div">
               <HourlyForecast hourlyForecast={hourlyForecast} sunrise={sunrise} sunset={sunset}/>
           </div>

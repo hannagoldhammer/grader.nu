@@ -11,18 +11,18 @@ import Clouds from "./components/Clouds";
 import Page from "./page/Page";
 
 function App() {
-  
+
   return (
     <div className="App">
       <Router>
         <Switch>
           <Route exact path="/">
-            <div className="test">
-              {/* <Clouds/> */}
-            </div>
+            {/* <div className="page-div">
+              <Clouds/>
+            </div> */}
             <Page />
           </Route>
-        </Switch> 
+        </Switch>
       </Router>
     </div>
   );

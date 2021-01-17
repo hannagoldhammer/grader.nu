@@ -18,6 +18,12 @@
             
             .table-Head{
                 justify-content: space-evenly;
+                background-color: aliceblue;
+
+                th{
+                    position: sticky; 
+                    top: 0;
+                }
             }
 
             td{
@@ -28,7 +34,12 @@
             .icon-img{
                 width: 42px;
             }
+
         }    
+        .dayName{
+            text-align: left;
+            padding-left: 12.5px;
+        }
     }
     .show-more-btn-div{
         overflow-y: hidden;

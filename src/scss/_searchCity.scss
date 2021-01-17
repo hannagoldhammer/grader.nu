@@ -1,3 +1,27 @@
+.search-form-div{
+    display:flex;
+    justify-content:center;
+
+    form{
+        flex:1;
+        // display: flex;
+        // justify-content: center;
+        transform: translateX(21px);
+    }
+
+    .icon-img-div{
+        z-index: 100;
+
+        .icon-img{
+            width: 34px;
+            margin-right: 3px;
+        }
+    }
+    .icon-img-div:hover{
+        cursor: pointer;
+    }
+}
+
 .btnStyleFalse{
     height: 32px;
     border-radius: 0 10px 10px 0;
@@ -5,7 +29,7 @@
 }
 
 .btnStyleTrue{
-    background-color: aliceblue;
+    background-color: #f0f8ff;
 }
 
 input{
@@ -15,6 +39,3 @@ input{
     outline: none;
 }
 
-form{
-    padding-top: 20px;
-}

@@ -1,19 +1,19 @@
 @import "src/scss/imports";
 
-
-
 .App {
-    background-color: lightblue;
-    min-height: 100vh;
+    // background-color: lightblue;
+    background: linear-gradient(0deg, #62a0d8 0%, #2178d1 55%, #085cb3 100%);
+    height: 100vh;
     margin: auto 0;
     display: flex;
     justify-content: center;
     overflow-x: hidden;
+    
+    .page-div{
+        position: relative;
+    }
 }
 
-.test{
-    position: relative;
-}
 
 // .App-logo {
 //   height: 40vmin;

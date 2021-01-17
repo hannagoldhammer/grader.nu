@@ -1,22 +1,20 @@
 .dailyForecast-wrapping-div{
-    background-color: white;
     border-radius: 5px;
     margin-top: 20px;
     text-align: center;
     display: flex;
     overflow-x: hidden;
-    padding: 0 20px;
     min-height: 200px;
 
     .daily-weather-div{
-        min-width: 36%;
-        min-height: 250px;
+        min-width: 38%;
+        min-height: 227px;
         border: gray solid 1px;
-        padding: 20px;
+        /* padding: 20px; */
         border-radius: 5px;
         background-color: white;
-        margin: 10px 8px;
-        box-shadow: 0 0 16px rgba(209, 208, 208, 0.8);
+        margin: 10px 8px 10px 4px;
+        box-shadow: 0 0 8px darkblue;
 
         @include tablet{
             min-width: 28%;
@@ -26,8 +24,35 @@
             min-width: 24%;
         }
 
+        .dayOfTheWeek{
+            margin: 14px;
+        }
+
         .daily-description{
             text-transform: 'capitalize'
+        }
+
+        .icon-img{
+            width: 87px;
+            padding-top: 20px;
+        }
+
+        .more-info-div{
+            display: flex;
+            justify-content: space-evenly;
+            background-color: aliceblue;
+            height: 85px;
+            border-radius: 0 0 5px 5px;
+            align-items: center;
+            margin-top: 15px;
+            
+            .precipitation-img{
+                width: 40px;
+            }
+
+            p{
+                padding: 0 0 0 10px;
+            }
         }
 
     }
