@@ -2,12 +2,14 @@
 
 .App {
     // background-color: lightblue;
-    background: linear-gradient(0deg, #62a0d8 0%, #2178d1 55%, #085cb3 100%);
+    // background: linear-gradient(0deg, #62a0d8 0%, #2178d1 55%, #085cb3 100%);
+    background: linear-gradient(0deg, #70bafd 0%, #2885e4 55%, #1776da);
     height: 100vh;
     margin: auto 0;
     display: flex;
     justify-content: center;
     overflow-x: hidden;
+    // font-family: 'Nanum Gothic', sans-serif;
     
     .page-div{
         position: relative;

@@ -4,14 +4,14 @@ import getWeatherIcon from "./GeneralIncludes";
 export default function HourlyForecast({hourlyForecast, sunset, sunrise}) {
     const upcommingHours = Array.from(hourlyForecast);
     const [visible, setVisible] = useState(12);
-    
+
     let sunsetHour;
     let sunriseHour;
     function getTime(s) {
-        const dtFormat = new Intl.DateTimeFormat('sv-SE', {
-          timeStyle: 'medium',
-          timeZone: 'UTC'
-        });
+        // const dtFormat = new Intl.DateTimeFormat('sv-SE', {
+        //   timeStyle: 'medium',
+        //   timeZone: 'UTC'
+        // });
 
         let newSunset = new Date(sunset * 1000)
         let newSunrise = new Date(sunrise * 1000)
@@ -21,16 +21,16 @@ export default function HourlyForecast({hourlyForecast, sunset, sunrise}) {
     getTime(sunset);
     getTime(sunrise);
 
-    const _MS_PER_DAY = 1000 * 60 * 60 * 24;
+    const ms_per_day = 1000 * 60 * 60 * 24;
 
     function dateDiffInDays(a, b) {
         const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
         const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
 
-        let dayDiffName = Math.round((utc2 - utc1) / _MS_PER_DAY);
-        if(dayDiffName == 0){
+        let dayDiffName = Math.round((utc2 - utc1) / ms_per_day);
+        if(dayDiffName === 0){
             dayDiffName = "Idag"
-        }else if(dayDiffName == 1){
+        }else if(dayDiffName === 1){
             dayDiffName = "Imorgon"
         }else{
             dayDiffName = "Om " + dayDiffName + " dagar";
@@ -77,15 +77,15 @@ export default function HourlyForecast({hourlyForecast, sunset, sunrise}) {
         setVisible((prevValue) => prevValue + 12)
     }
 
-    // Funktion för att kolla vad responsen ger för väder beskrivning och returnera rätt ikon
     let icon; 
     let currentDay;
     let details = weather_details.slice(0, visible).map((hours) => {
         let newCheckhours = hours.dayAndHour.getHours()
         
+        // Funktion för att kolla vad responsen ger för väder beskrivning och returnera rätt ikon
         icon = getWeatherIcon(newCheckhours, sunriseHour, sunsetHour, hours.description)
-        let nameOfCurrentDay ;
-    
+
+        let nameOfCurrentDay;
         if(currentDay !== dateDiffInDays(new Date(), hours.dayAndHour)){
             currentDay = dateDiffInDays(new Date(), hours.dayAndHour);
             nameOfCurrentDay = <tr>
@@ -94,14 +94,15 @@ export default function HourlyForecast({hourlyForecast, sunset, sunrise}) {
         }else {
             nameOfCurrentDay = "";
         }
+
         return <> 
-            {nameOfCurrentDay}
+            {/* {nameOfCurrentDay} */}
             <tr key={hours.dayAndHour}>
                 <td>{("0" + hours.dayAndHour.getHours()).slice(-2)}:00</td>
                 <td title={hours.description}> {icon} </td>
                 <td> {Math.round(hours.temp)} °C</td>
                 <td> {Math.round(hours.feels_like)} °C</td>
-                <td> {hours.precipitation} mm</td>
+                <td> {(hours.precipitation.toFixed(1))} mm</td>
             </tr>
         </>
     })
@@ -109,20 +110,20 @@ export default function HourlyForecast({hourlyForecast, sunset, sunrise}) {
     return (
         <>
             <div className="hourlyForecast-div"> 
-            <table>
-                <thead key={"Head"}>
-                    <tr className="table-Head">
-                        <th>Timme</th>
-                        <th>Väder</th>
-                        <th>Tempertur</th>
-                        <th>Känns som</th>
-                        <th>Nederbörd</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {details}
-                </tbody>
-            </table>
+                <table>
+                    <thead key={"Head"}>
+                        <tr className="table-Head">
+                            <th>Timme</th>
+                            <th>Väder</th>
+                            <th>Tempertur</th>
+                            <th>Känns som</th>
+                            <th>Nederbörd</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {details}
+                    </tbody>
+                </table>
             </div>
             {visible < 49 ?
                 <div className="show-more-btn-div">

@@ -61,12 +61,12 @@
 
     .left{
         top: 50%;
-        left: 3px;
+        left: -19px;
     }
     
     .right{
         top: 50%;
-        right: 3px;
+        right: -19px;
     }
 }
 
@@ -76,7 +76,8 @@
     }
 
     .city{
-        font-weight: 600;
+        font-size: 21px;
+        font-weight: 400;
     }
     .precipitation-div{
         display: flex;

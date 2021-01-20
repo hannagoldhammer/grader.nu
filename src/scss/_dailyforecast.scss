@@ -3,14 +3,17 @@
     margin-top: 20px;
     text-align: center;
     display: flex;
-    overflow-x: hidden;
+    overflow-x: scroll;
     min-height: 200px;
 
+    @include tablet{
+        overflow: hidden;
+    }
+
     .daily-weather-div{
-        min-width: 38%;
+        min-width: 45%;
         min-height: 227px;
         border: gray solid 1px;
-        /* padding: 20px; */
         border-radius: 5px;
         background-color: white;
         margin: 10px 8px 10px 4px;
@@ -26,6 +29,7 @@
 
         .dayOfTheWeek{
             margin: 14px;
+            font-size: 19px;
         }
 
         .daily-description{
@@ -37,23 +41,35 @@
             padding-top: 20px;
         }
 
-        .more-info-div{
+        .precipitation-div{
             display: flex;
+            flex-direction: row;
             justify-content: space-evenly;
             background-color: aliceblue;
-            height: 85px;
             border-radius: 0 0 5px 5px;
-            align-items: center;
-            margin-top: 15px;
-            
-            .precipitation-img{
-                width: 40px;
-            }
+            margin-top: 24px;
 
-            p{
-                padding: 0 0 0 10px;
+            .more-info-div{
+                display: flex;
+                justify-content: space-evenly;
+                background-color: aliceblue;
+                height: 85px;
+                border-radius: 0 0 5px 5px;
+                align-items: center;
+                margin-top: 15px;
+                
+                .precipitation-img{
+                    width: 35px;
+                }
+    
+                p{
+                    padding: 0 0 0 10px;
+                }
             }
         }
-
     }
+}
+
+.dailyForecast-wrapping-div::-webkit-scrollbar { 
+    display: none;
 }

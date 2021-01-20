@@ -196,28 +196,43 @@ export default function Page() {
         setSunrise(sunUp)
         setSunset(sunDown)
         setLoading(false)
+
+        
       }).catch(function (error) {
         console.error(error);
       });
     }
+
+    
   }, [lng_lat])
 
     function right() {
-      console.log("Vänster")
       document.getElementById('scroll-div').scroll({
         left: document.getElementById('scroll-div').scrollLeft +250,
         behavior: 'smooth'
     })
       setLeftButton(true)
+      if(document.getElementById('scroll-div').scrollLeft > 999){
+        document.getElementsByClassName('right')[0].style.display="none";
+      }else{
+        document.getElementsByClassName('right')[0].style.display="";
+      }
     };
     function left() {
-      console.log("Höger")
         document.getElementById('scroll-div').scroll({
         left: document.getElementById('scroll-div').scrollLeft -250,
         behavior: 'smooth'
-    })
-    };
 
+      })
+      if(document.getElementById('scroll-div').scrollLeft < 251){
+        document.getElementsByClassName('left')[0].style.display="none";
+        setLeftButton(false)
+      }else{
+        console.log(document.getElementsByClassName('left').style)
+        document.getElementsByClassName('left')[0].style.display="";
+      }
+    };
+// 1250
     return (
       <div className="main-div">
         {loading ? 
@@ -233,16 +248,17 @@ export default function Page() {
           </div>
           
           <div className="dailyForecast-div">
-            {leftButton ? 
-              <div onClick={left} className="arrow-div left">
-                <i class="fas fa-chevron-left fa-lg"></i>
-              </div>
-            : null}
+            {leftButton &&
+            <div onClick={left} className="arrow-div left">
+              <i className="fas fa-chevron-left fa-lg"></i>
+            </div>
+            }
+            
             <div id="scroll-div" className="dailyForecast-wrapping-div">
               <DailyForecast dailyForecast={dailyForecast}/>
             </div>
             <div onClick={right} className="arrow-div right">
-              <i class="fas fa-chevron-right fa-lg"></i>
+              <i className="fas fa-chevron-right fa-lg"></i>
             </div>
           </div>
 
@@ -252,8 +268,6 @@ export default function Page() {
           </div>
         </>
       }
-        
-
       </div>
     )
 }
