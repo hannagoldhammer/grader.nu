@@ -96,7 +96,7 @@ export default function HourlyForecast({hourlyForecast, sunset, sunrise}) {
         }
 
         return <> 
-            {/* {nameOfCurrentDay} */}
+            {nameOfCurrentDay}
             <tr key={hours.dayAndHour}>
                 <td>{("0" + hours.dayAndHour.getHours()).slice(-2)}:00</td>
                 <td title={hours.description}> {icon} </td>

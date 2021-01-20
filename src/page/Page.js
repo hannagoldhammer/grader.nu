@@ -212,7 +212,7 @@ export default function Page() {
         behavior: 'smooth'
     })
       setLeftButton(true)
-      if(document.getElementById('scroll-div').scrollLeft > 999){
+      if(document.getElementById('scroll-div').scrollLeft > 989){
         document.getElementsByClassName('right')[0].style.display="none";
       }else{
         document.getElementsByClassName('right')[0].style.display="";
