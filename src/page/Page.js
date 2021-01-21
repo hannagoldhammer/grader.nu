@@ -212,7 +212,7 @@ export default function Page() {
         behavior: 'smooth'
     })
       setLeftButton(true)
-      if(document.getElementById('scroll-div').scrollLeft > 989){
+      if(document.getElementById('scroll-div').scrollLeft > 999){
         document.getElementsByClassName('right')[0].style.display="none";
       }else{
         document.getElementsByClassName('right')[0].style.display="";
@@ -232,7 +232,7 @@ export default function Page() {
         document.getElementsByClassName('left')[0].style.display="";
       }
     };
-// 1250
+
     return (
       <div className="main-div">
         {loading ? 

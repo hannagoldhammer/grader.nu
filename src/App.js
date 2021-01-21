@@ -8,6 +8,7 @@ import {
 
 import "./App.scss"
 import Clouds from "./components/Clouds";
+import Sun from "./components/Sun";
 import Page from "./page/Page";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
             {/* <div className="page-div">
               <Clouds/>
             </div> */}
+            <Sun/>
             <Page />
           </Route>
         </Switch>

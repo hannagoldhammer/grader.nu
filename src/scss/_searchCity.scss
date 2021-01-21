@@ -4,8 +4,6 @@
 
     form{
         flex:1;
-        // display: flex;
-        // justify-content: center;
         transform: translateX(28px);
     }
 
@@ -23,13 +21,14 @@
 }
 
 .btnStyleFalse{
-    height: 31.5px;
+    height: 33px;
     border-radius: 0 10px 10px 0;
     border: 0.5px solid lightgray;
 }
 
 .btnStyleTrue{
-    background-color: #f0f8ff;
+    background-color: #1776DA;
+    color: white;
 }
 
 input{

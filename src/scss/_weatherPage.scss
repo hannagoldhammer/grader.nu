@@ -91,7 +91,12 @@
         .more-info-div{
             display: flex;
             margin: auto 0;
-            padding: 20px;
+            padding: 16px;
+            
+            @include tablet{
+                padding: 20px;
+
+            }
 
             .precipitation-img{
                 width: 42px;
