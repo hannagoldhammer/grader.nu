@@ -11,13 +11,17 @@
     }
 
     .daily-weather-div{
-        min-width: 45%;
+        min-width: 57%;
         min-height: 227px;
         border: gray solid 1px;
         border-radius: 5px;
         background-color: white;
         margin: 10px 8px 10px 4px;
         box-shadow: 0 0 8px darkblue;
+
+        @include mini-tablet{
+            min-width: 31%;
+        }
 
         @include tablet{
             min-width: 28%;
@@ -28,8 +32,12 @@
         }
 
         .dayOfTheWeek{
-            margin: 14px;
-            font-size: 19px;
+            margin: 14px 0;
+            font-size: 14px;
+            
+            @include tablet{
+                font-size: 18px;
+            }
         }
 
         .daily-description{
@@ -37,7 +45,7 @@
         }
 
         .icon-img{
-            width: 87px;
+            width: 74px;
             padding-top: 20px;
         }
 
@@ -52,11 +60,9 @@
             .more-info-div{
                 display: flex;
                 justify-content: space-evenly;
-                background-color: aliceblue;
                 height: 85px;
                 border-radius: 0 0 5px 5px;
                 align-items: center;
-                margin-top: 15px;
                 
                 .precipitation-img{
                     width: 35px;

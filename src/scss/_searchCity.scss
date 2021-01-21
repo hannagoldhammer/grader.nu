@@ -21,7 +21,7 @@
 }
 
 .btnStyleFalse{
-    height: 33px;
+    height: 31.5px;
     border-radius: 0 10px 10px 0;
     border: 0.5px solid lightgray;
 }
@@ -36,5 +36,11 @@ input{
     height: 28px;
     border-radius: 10px 0 0 10px;
     outline: none;
+    width: 129px;
+    
+    @include mini-tablet{
+        width: 170px;
+        
+    }
 }
 

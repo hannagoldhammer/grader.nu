@@ -23,12 +23,16 @@
                 th{
                     position: sticky; 
                     top: 0;
-                    font-size: 16px;
+                    font-size: 14px;
                     background-color: aliceblue;
                     padding: 12px 0;
                     
                     @include tablet{
-                        font-size: 19px;
+                        font-size: 15px;
+                    }
+                    
+                    @include desktop{
+                        font-size: 17px;
                     }
                 }
             }
@@ -45,8 +49,25 @@
         }    
         .dayName{
             text-align: left;
-            padding-left: 16.5px;
-            font-size: 19px;
+            padding-left: 9px;
+            font-size: 15px;
+            
+            @include mini-tablet{
+                padding-left: 20px;
+
+            }
+
+            @include tablet{
+                padding-left: 32px;
+            }
+
+            @include mini-desktop{
+                padding-left: 43px;
+            }
+
+            @include desktop{
+                padding-left: 40px;
+            }
         }
     }
     .show-more-btn-div{

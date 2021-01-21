@@ -11,6 +11,18 @@
     justify-content: center;
     overflow-x: hidden;
     // font-family: 'Nanum Gothic', sans-serif;
+
+    p{
+        font-size: 12px;
+
+        @include mini-tablet{
+            font-size: 14px;
+        }
+
+        @include tablet{
+            font-size: 17px;
+        }
+    }
     
     .page-div{
         position: relative;

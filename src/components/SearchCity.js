@@ -25,8 +25,6 @@ export default function SearchCity({getSearchedWeatherResult, getSearchedWeather
             new window.google.maps.event.addListener(autocomplete, "place_changed", function(){
             let place = autocomplete.getPlace();
             setSearch(place.formatted_address);
-            // console.log("place")
-            // console.log(place)
             setBtnSearch(false)
             setBtnStyle(true)
         });

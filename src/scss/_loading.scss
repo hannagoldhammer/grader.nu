@@ -12,6 +12,7 @@
         left: 50%;
         width: 270px;
         animation: spinner 10s linear infinite;
+        z-index: 100000000;
     }
 
     .loading-data-p{

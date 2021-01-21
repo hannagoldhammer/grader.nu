@@ -44,25 +44,24 @@ export default function HourlyForecast({hourlyForecast, sunset, sunrise}) {
     let allHoursArray = []
     for(let i = 0; i < upcommingHours.length; i++) {
         todayDate.setHours(todayDate.getHours() + 1)
-        // newHours = todayDate.toLocaleString('sv-SE',{hour:'2-digit'}) + ":00";
         newDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate(), todayDate.getHours(), 0, 0);
         allHoursArray.push(newDate)
     }
-
+    
+    let precipitation;
     let weather_details = upcommingHours.map(function(oneHour, i){
         let upcomingTemperature = oneHour?.temp;
         let weatherDescription = oneHour?.weather?.[0]?.description;
         let feels_like = oneHour?.feels_like
         let dayAndHour = allHoursArray[i];
-        let precipitation;
         if(oneHour.snow?.["1h"] !== undefined){
-            precipitation = oneHour.snow?.["1h"];
+            precipitation = oneHour.snow?.["1h"].toFixed(1);
         }else{
             precipitation = 0;
         }
 
         if(oneHour?.rain?.["1h"] !== undefined){
-            precipitation = oneHour?.rain?.["1h"];
+            precipitation = oneHour?.rain?.["1h"].toFixed(1);
         }else{
             precipitation = 0;
         }
@@ -102,7 +101,7 @@ export default function HourlyForecast({hourlyForecast, sunset, sunrise}) {
                 <td title={hours.description}> {icon} </td>
                 <td> {Math.round(hours.temp)} °C</td>
                 <td> {Math.round(hours.feels_like)} °C</td>
-                <td> {(hours.precipitation.toFixed(1))} mm</td>
+                <td> {hours.precipitation}</td>
             </tr>
         </>
     })
@@ -113,11 +112,11 @@ export default function HourlyForecast({hourlyForecast, sunset, sunrise}) {
                 <table>
                     <thead key={"Head"}>
                         <tr className="table-Head">
-                            <th>Timme</th>
+                            <th>Tid</th>
                             <th>Väder</th>
-                            <th>Tempertur</th>
+                            <th>Temp</th>
                             <th>Känns som</th>
-                            <th>Nederbörd</th>
+                            <th>mm</th>
                         </tr>
                     </thead>
                     <tbody>
