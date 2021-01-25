@@ -21,8 +21,9 @@ export default function HourlyForecast({hourlyForecast, sunset, sunrise}) {
     getTime(sunset);
     getTime(sunrise);
 
+    
+    // Funktion för att ta reda på hur många dagars skillnad det är från idag till imorgon och i övermorgon
     const ms_per_day = 1000 * 60 * 60 * 24;
-
     function dateDiffInDays(a, b) {
         const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
         const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
@@ -42,25 +43,24 @@ export default function HourlyForecast({hourlyForecast, sunset, sunrise}) {
     let newHours;
     let newDate;
     let allHoursArray = []
+    
+    // Loop för att få fram år, månad, dag och timmar
     for(let i = 0; i < upcommingHours.length; i++) {
         todayDate.setHours(todayDate.getHours() + 1)
         newDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate(), todayDate.getHours(), 0, 0);
         allHoursArray.push(newDate)
     }
-    
+
     let precipitation;
     let weather_details = upcommingHours.map(function(oneHour, i){
         let upcomingTemperature = oneHour?.temp;
         let weatherDescription = oneHour?.weather?.[0]?.description;
         let feels_like = oneHour?.feels_like
         let dayAndHour = allHoursArray[i];
-        if(oneHour.snow?.["1h"] !== undefined){
-            precipitation = oneHour.snow?.["1h"].toFixed(1);
-        }else{
-            precipitation = 0;
-        }
 
-        if(oneHour?.rain?.["1h"] !== undefined){
+        if(oneHour.snow?.["1h"]){
+            precipitation = oneHour.snow?.["1h"].toFixed(1);
+        }else if(oneHour?.rain?.["1h"]){
             precipitation = oneHour?.rain?.["1h"].toFixed(1);
         }else{
             precipitation = 0;

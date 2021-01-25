@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  // Link
 } from "react-router-dom";
 
 import "./App.scss"
@@ -18,7 +17,8 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/">
-            {/* <div className="page-div">
+            {/* Denna delen ligger i backlog och ska utvecklas vidare senare
+            <div className="page-div">
               <Clouds/>
             </div> */}
             <Sun/>

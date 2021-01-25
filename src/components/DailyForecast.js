@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function DailyForecast({dailyForecast}) {
-    const upcomingDays = Array.from(dailyForecast)
+    const upcomingDays = (Array.from(dailyForecast)).slice(1);
 
     let todayDate = new Date();
     let newDays;
@@ -9,24 +9,20 @@ export default function DailyForecast({dailyForecast}) {
 
     for(let i = 0; i < upcomingDays.length; i++) {
         todayDate.setDate(todayDate.getDate() + 1)
-        newDays = todayDate.toLocaleString('sv-SE',{weekday: 'long', month:'short', day:'numeric'}).replace(".", "")
-        allDaysArray.push(newDays)
+        newDays = todayDate.toLocaleString('sv-SE',{weekday: 'long', month:'short', day:'numeric'}).replace(".", "");
+        allDaysArray.push(newDays);
     }
 
     let icon;
-    let precipitation;
     let details = upcomingDays.map((oneDay, i) => {
         let upcomingTemperature = oneDay?.temp?.day;
         let weatherDescription = oneDay?.weather?.[0]?.description;
         let day = allDaysArray[i];
+        let precipitation;
 
-        if(oneDay.snow !== undefined){
+        if(oneDay.snow){
             precipitation = (oneDay.snow).toFixed(1);
-        }else{
-            precipitation = 0;
-        }
-
-        if(oneDay?.rain !== undefined){
+        }else if(oneDay?.rain){
             precipitation = (oneDay?.rain).toFixed(1);
         }else{
             precipitation = 0;

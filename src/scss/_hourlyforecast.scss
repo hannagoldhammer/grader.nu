@@ -54,7 +54,6 @@
             
             @include mini-tablet{
                 padding-left: 20px;
-
             }
 
             @include tablet{
@@ -84,7 +83,6 @@
         }
         .show-more-btn:hover{
             cursor: pointer;
-            
         }
     }
 }

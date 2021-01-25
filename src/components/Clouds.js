@@ -8,7 +8,6 @@ export default function Clouds() {
             <div className="cloud" id="cloud-mid"></div>
             <div className="cloud" id="cloud-front"></div>
             <svg width="0" height="0">
-                {/* <!--Top Layer--> */}
                 <filter id="filter-base">
                     <feTurbulence type="fractalNoise" baseFrequency="0.011" numOctaves="5"
                         seed="8517" />

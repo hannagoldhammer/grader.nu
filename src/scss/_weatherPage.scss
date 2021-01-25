@@ -2,7 +2,7 @@
     width: 80%;
 
     @include desktop{
-        width: 60%;
+        width: 50%;
     }
 
     .weatherpage-div{
@@ -51,7 +51,6 @@
 }
 .dailyForecast-div{
     position: relative;
-    // z-index: -100;
 
     .arrow-div{
         align-items: center;
@@ -85,20 +84,18 @@
         justify-content: space-evenly;
         background-color: aliceblue;
         border-radius: 0 0 5px 5px;
-
-        // border-top: solid lightgray 1px;
+        align-items: center;
 
         .more-info-div{
             display: flex;
-            margin: auto 0;
             padding: 11px 0;
             
             @include mini-tablet{
                 padding: 16px;
             }
+            
             @include tablet{
                 padding: 20px;
-
             }
 
             .precipitation-img{

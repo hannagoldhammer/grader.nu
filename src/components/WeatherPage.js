@@ -40,6 +40,7 @@ export default function WeatherPage({data, loading, error404, error503, reversed
     let icon;
     if(data?.weather?.[0]?.description !== undefined){
         weather_description = data?.weather?.[0]?.description
+        // För att väderbeskrivningen ska börja med en stor bokstav
         function capitalize(){
             weather_description = weather_description.charAt(0).toUpperCase() + weather_description.slice(1);
             return <p>{weather_description}</p>
@@ -99,8 +100,6 @@ export default function WeatherPage({data, loading, error404, error503, reversed
                     <>
                         <Loading />
                     </>
-                    // <div className="grey-loading">
-                    // </div>
                 }
                 <div className="current-place-weather-info">
                     {city}
@@ -124,8 +123,7 @@ export default function WeatherPage({data, loading, error404, error503, reversed
                             <p> {wind} m/s</p>
                         </div>
                     </div>
-                </div>
-                
+                </div> 
             </>
             }
         </>

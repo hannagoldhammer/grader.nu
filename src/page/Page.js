@@ -67,7 +67,7 @@ export default function Page() {
         response => {
           let city = "";
           
-          // Leta först uppstadens namn med postal_town
+          // Leta först upp stadens namn med postal_town
           response.results.forEach((result) => {
             if(result.types === "postal_town"){
                 city = result.formatted_address;
@@ -104,7 +104,6 @@ export default function Page() {
   const getCurrentWeather = {
     method: 'GET',
     url: `https://api.openweathermap.org/data/2.5/onecall`,
-    // url: `https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/onecall`,
     params: {
       lat: latitude,
       lon: longitude,
@@ -143,8 +142,6 @@ export default function Page() {
           setLatitude(response?.results?.[0]?.geometry?.location?.lat);
           setLongitude(response?.results?.[0]?.geometry?.location?.lng);
           setLng_lat(response?.results?.[0]?.geometry?.location?.lng, response?.results?.[0]?.geometry?.location?.lat)
-          console.log("response")
-          console.log(response)
         },
         error => {
           console.error(error);
@@ -152,12 +149,7 @@ export default function Page() {
       );
     }).catch(error => {
       console.log(error.message)
-      if (error.response) {
-
-            // if(error.response.status === 404){
-            // setError404(true);
-            // }
-         
+      if (error.response) {       
             if(error.request.status === 503){
                 setError503(true);
             }
@@ -196,78 +188,74 @@ export default function Page() {
         setSunrise(sunUp)
         setSunset(sunDown)
         setLoading(false)
-
         
       }).catch(function (error) {
         console.error(error);
       });
     }
-
-    
   }, [lng_lat])
 
-    function right() {
+  function right() {
+    document.getElementById('scroll-div').scroll({
+      left: document.getElementById('scroll-div').scrollLeft +250,
+      behavior: 'smooth'
+  })
+    setLeftButton(true)
+    if(document.getElementById('scroll-div').scrollLeft > 999){
+      document.getElementsByClassName('right')[0].style.display="none";
+    }else{
+      document.getElementsByClassName('right')[0].style.display="";
+    }
+  }
+
+  function left() {
       document.getElementById('scroll-div').scroll({
-        left: document.getElementById('scroll-div').scrollLeft +250,
-        behavior: 'smooth'
+      left: document.getElementById('scroll-div').scrollLeft -250,
+      behavior: 'smooth'
+
     })
-      setLeftButton(true)
-      if(document.getElementById('scroll-div').scrollLeft > 999){
-        document.getElementsByClassName('right')[0].style.display="none";
-      }else{
-        document.getElementsByClassName('right')[0].style.display="";
-      }
-    };
-    function left() {
-        document.getElementById('scroll-div').scroll({
-        left: document.getElementById('scroll-div').scrollLeft -250,
-        behavior: 'smooth'
+    if(document.getElementById('scroll-div').scrollLeft < 251){
+      document.getElementsByClassName('left')[0].style.display="none";
+      setLeftButton(false)
+    }else{
+      document.getElementsByClassName('left')[0].style.display="";
+    }
+  }
 
-      })
-      if(document.getElementById('scroll-div').scrollLeft < 251){
-        document.getElementsByClassName('left')[0].style.display="none";
-        setLeftButton(false)
-      }else{
-        console.log(document.getElementsByClassName('left').style)
-        document.getElementsByClassName('left')[0].style.display="";
-      }
-    };
-
-    return (
-      <div className="main-div">
-        {loading ? 
-          <div id="initial-loading">
-            <Loading />
+  return (
+    <div className="main-div">
+      {loading ?
+        <div id="initial-loading">
+          <Loading />
+        </div>
+      :
+      <>
+        <div className="weatherpage-div">
+            <Header/>
+            <SearchCity getSearchedWeather={getSearchedWeather} getSearchedWeatherResult={search => {setSearchedCity(search)}} />
+            <WeatherPage loading={loading} data={currentWeather} reversedGeolocation={reversedGeolocation} error404={error404} error503={error503} sunrise={sunrise} sunset={sunset}/>
+        </div>
+        
+        <div className="dailyForecast-div">
+          {leftButton &&
+          <div onClick={left} className="arrow-div left">
+            <i className="fas fa-chevron-left fa-lg"></i>
           </div>
-        :
-        <>
-          <div className="weatherpage-div">
-              <Header/>
-              <SearchCity getSearchedWeather={getSearchedWeather} getSearchedWeatherResult={search => {setSearchedCity(search)}} />
-              <WeatherPage loading={loading} data={currentWeather} reversedGeolocation={reversedGeolocation} error404={error404} error503={error503} sunrise={sunrise} sunset={sunset}/>
-          </div>
+          }
           
-          <div className="dailyForecast-div">
-            {leftButton &&
-            <div onClick={left} className="arrow-div left">
-              <i className="fas fa-chevron-left fa-lg"></i>
-            </div>
-            }
-            
-            <div id="scroll-div" className="dailyForecast-wrapping-div">
-              <DailyForecast dailyForecast={dailyForecast}/>
-            </div>
-            <div onClick={right} className="arrow-div right">
-              <i className="fas fa-chevron-right fa-lg"></i>
-            </div>
+          <div id="scroll-div" className="dailyForecast-wrapping-div">
+            <DailyForecast dailyForecast={dailyForecast}/>
           </div>
+          <div onClick={right} className="arrow-div right">
+            <i className="fas fa-chevron-right fa-lg"></i>
+          </div>
+        </div>
 
-          
-          <div className="hourlyForecast-wrapping-div">
-              <HourlyForecast hourlyForecast={hourlyForecast} sunrise={sunrise} sunset={sunset}/>
-          </div>
-        </>
-      }
-      </div>
-    )
+        <div className="hourlyForecast-wrapping-div">
+            <HourlyForecast hourlyForecast={hourlyForecast} sunrise={sunrise} sunset={sunset}/>
+        </div>
+      </>
+    }
+    </div>
+  )
 }

@@ -20,6 +20,10 @@
         bottom: 0;
         width: 70px;
         animation: ray_anim 120s linear infinite;
+
+        @include desktop{
+            right: 21px;
+        }
         
         .ray{  
             margin-left: 10px;
@@ -110,6 +114,7 @@
             left: -17px;
         }
     }
+    
     @keyframes ray_anim { 
             0% { transform: rotate(0deg); transform: rotate(0deg);}    
         100% { transform: rotate(360deg); transform: rotate(360deg);}

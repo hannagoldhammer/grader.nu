@@ -7,7 +7,6 @@ export default function SearchCity({getSearchedWeatherResult, getSearchedWeather
     const placeInputRef = useRef(null);
 
     function sendSearch(e){
-        // document.getElementsByClassName("dailyForecast-div").style.zIndex = "-100";
         e.preventDefault();
         getSearchedWeather();
         setSearch(e.target.value)
@@ -20,6 +19,7 @@ export default function SearchCity({getSearchedWeatherResult, getSearchedWeather
         initPlaceAPI();
     }, []);
      
+    // För att användaren ska få drop down förslag på städer som man kan söka på
     const initPlaceAPI = () => {
         let autocomplete = new window.google.maps.places.Autocomplete(placeInputRef.current)
             new window.google.maps.event.addListener(autocomplete, "place_changed", function(){
