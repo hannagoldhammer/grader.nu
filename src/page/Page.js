@@ -69,7 +69,7 @@ export default function Page() {
           
           // Leta först upp stadens namn med postal_town
           response.results.forEach((result) => {
-            if(result.types === "postal_town"){
+            if(result.types[0] === "postal_town"){
                 city = result.formatted_address;
               }
             })
@@ -199,7 +199,7 @@ export default function Page() {
     document.getElementById('scroll-div').scroll({
       left: document.getElementById('scroll-div').scrollLeft +250,
       behavior: 'smooth'
-  })
+    })
     setLeftButton(true)
     if(document.getElementById('scroll-div').scrollLeft > 999){
       document.getElementsByClassName('right')[0].style.display="none";
@@ -212,8 +212,8 @@ export default function Page() {
       document.getElementById('scroll-div').scroll({
       left: document.getElementById('scroll-div').scrollLeft -250,
       behavior: 'smooth'
-
     })
+
     if(document.getElementById('scroll-div').scrollLeft < 251){
       document.getElementsByClassName('left')[0].style.display="none";
       setLeftButton(false)

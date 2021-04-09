@@ -60,13 +60,10 @@ export default function WeatherPage({data, loading, error404, error503, reversed
     }
 
     let precipitation;
-    if(data.snow?.["1h"] !== undefined){
-        precipitation = (data.snow?.["1h"].toFixed(1));
-    }else{
-        precipitation = 0;
-    }
 
-    if(data?.rain?.["1h"] !== undefined){
+    if(data.snow?.["1h"]){
+        precipitation = (data.snow?.["1h"].toFixed(1));
+    }else if(data?.rain?.["1h"]){
         precipitation = (data?.rain?.["1h"].toFixed(1));
     }else{
         precipitation = 0;
